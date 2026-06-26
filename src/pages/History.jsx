@@ -4,10 +4,11 @@ export default function History(){
 
     return(
 
-        <div>
-            <Sidebar />
+        <div className="layout">
+            <Sidebar/>
 
-            <h2>
+            <main className="content">
+                <h2>
                 Historial de PDFs
             </h2>
 
@@ -29,6 +30,7 @@ export default function History(){
 
 
             </div>
+            </main>
 
 
         </div>

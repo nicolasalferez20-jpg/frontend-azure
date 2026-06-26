@@ -24,29 +24,19 @@ function App() {
 
           <nav>
 
-            <Link 
-              className="nav-button" to="/">
+            <Link className="nav-button" to="/">
                 <Button variant="primary">
                   Inicio
                 </Button>
             </Link>
 
-            <Link 
-              className="nav-button" to="/consultar">
-                <Button variant="primary">
-                  Consultar HU
-                </Button>
-            </Link>
-
-            <Link 
-              className="nav-button" to="/generar">
+            <Link className="nav-button" to="/generar">
                 <Button>
                   Generar PDF
                 </Button>
             </Link>
 
-            <Link 
-              className="nav-button" to="/historial">
+            <Link className="nav-button" to="/historial">
                 <Button>
                   Historial
                 </Button>
@@ -59,10 +49,12 @@ function App() {
         <main className="content">
           <Routes>
             <Route path="/"element={<Home />}/>
-            <Route path="/consultar"element={<HuForm />}/>
+
             <Route path="/generar"element={<GeneratePDF />}/>
+
             <Route path="/historial"element={<History />}/>
-            <Route path="*"element={<Navigate to="/" replace />}/>
+
+            <Route path="*"element={<Navigate to="/" replace />}/>            
           </Routes>
         </main>
       </div>

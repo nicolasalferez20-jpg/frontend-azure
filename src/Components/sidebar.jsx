@@ -23,11 +23,6 @@ export default function Sidebar() {
           <span>Inicio</span>
         </Link>
 
-        <Link to="/consultar" className="sidebar-link">
-          <FileText size={18} />
-          <span>Consultar HU</span>
-        </Link>
-
         <Link to="/generar" className="sidebar-link">
           <FileText size={18} />
           <span>Generar PDF</span>
@@ -37,13 +32,9 @@ export default function Sidebar() {
           <History size={18} />
           <span>Historial</span>
         </Link>
-
-        <Link to="/configuracion" className="sidebar-link">
-          <Settings size={18} />
-          <span>Configuración</span>
-        </Link>
-
+        
       </nav>
+
     </aside>
   );
 }

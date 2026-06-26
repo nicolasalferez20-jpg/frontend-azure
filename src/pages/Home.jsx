@@ -7,8 +7,9 @@ export default function Home() {
       <Sidebar />
 
       <main className="content">
-
-        <h1>Bienvenido 👋</h1>
+        <div className="bienvenido">
+          <h1>Bienvenido 👋</h1>
+        </div>
 
         <p>
           Automatiza la extracción de Historias de Usuario
@@ -18,7 +19,7 @@ export default function Home() {
         <div className="cards">
 
           <div className="card">
-            <h3>Consultar HU</h3>
+            <h3>Consultar Historial</h3>
             <p>Busca una historia de usuario por ID.</p>
           </div>
 

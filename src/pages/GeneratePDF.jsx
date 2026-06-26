@@ -1,48 +1,21 @@
-import { useState } from "react";
-import { generarPdf } from "../Services/PDFservice";
+import HuForm from "../Components/HuForm";
 import Sidebar from "../Components/sidebar";
+
 
 export default function GeneratePDF(){
 
-const [id,setId] = useState("");
+    return (
 
-const handleGenerate = async()=>{
+        <div className="layout">
+            <Sidebar/>
+            <main className="content">
+                <h1>
+                    Generar PDF Azure DevOps
+                </h1>
+                <HuForm />
+            </main>
+        </div>
 
-    if(!id){
-
-        alert("Ingrese el ID de la HU");
-
-        return;
-
-    }
-
-    await generarPdf(id);
-
-}
-return (
-<div>
-    <Sidebar />
-<h2>
-Generar PDF Azure DevOps
-</h2>
-
-<p>
-Ingrese el ID de la Historia de Usuario
-</p>
-
-<input
-type="number"
-
-value={id}
-
-onChange={(e)=>setId(e.target.value)}
-
-placeholder="Ej: 12345"
-
-/>
-<button onClick={handleGenerate}>
-    Generar PDF
-    </button>
-    </div>
     )
+
 }
