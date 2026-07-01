@@ -1,18 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-
-
-import pdfReducer from "./pdfSlice";
+import { historialApi } from "../Services/historialApi";
 
 
 export const store = configureStore({
 
-    reducer:{
+    reducer: {
 
+        [historialApi.reducerPath]:
+        historialApi.reducer
 
-        pdf:pdfReducer
+    },
 
-
-    }
-
-
+    middleware:(getDefaultMiddleware)=> getDefaultMiddleware()
+        .concat(historialApi.middleware)
 });
