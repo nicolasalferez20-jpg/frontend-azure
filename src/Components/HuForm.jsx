@@ -21,6 +21,7 @@ function HuForm() {
       );
 
       return;
+
     }
 
 
@@ -28,17 +29,28 @@ function HuForm() {
     try {
 
 
-      // Bloquea el botón
       setLoading(true);
 
 
 
-      // Espera a que el backend termine de generar el PDF
-      await generarPdf(idHu);
+      const respuesta = await generarPdf(idHu);
 
 
 
-    } catch (error) {
+      console.log(
+        "Respuesta backend:",
+        respuesta
+      );
+
+
+
+      alert(
+        `PDF generado correctamente: ${respuesta.archivo}`
+      );
+
+
+
+    } catch(error) {
 
 
       console.error(
@@ -56,13 +68,14 @@ function HuForm() {
     } finally {
 
 
-      // Habilita nuevamente el botón
       setLoading(false);
 
 
     }
 
+
   };
+
 
 
 
@@ -70,8 +83,8 @@ function HuForm() {
 
     <div
       style={{
-        padding: "20px",
-        fontFamily: "sans-serif"
+        padding:"20px",
+        fontFamily:"sans-serif"
       }}
     >
 
@@ -92,7 +105,7 @@ function HuForm() {
 
 
         onChange={
-          (e) => setIdHu(e.target.value)
+          (e)=>setIdHu(e.target.value)
         }
 
 
@@ -100,40 +113,33 @@ function HuForm() {
 
 
         style={{
-          padding: "8px",
-          marginRight: "10px"
+          padding:"8px",
+          marginRight:"10px"
         }}
 
       />
 
 
 
-
       <button
 
-
         onClick={generar}
-
 
         disabled={
           !idHu.trim() || loading
         }
 
 
-
         style={{
 
-          padding: "8px 16px",
-
+          padding:"8px 16px",
 
           cursor:
-            (!idHu.trim() || loading)
-            ? "not-allowed"
-            : "pointer"
+          (!idHu.trim() || loading)
+          ? "not-allowed"
+          :"pointer"
 
         }}
-
-
 
       >
 
@@ -144,7 +150,7 @@ function HuForm() {
 
           ? "Generando PDF..."
 
-          : "Generar PDF"
+          :"Generar PDF"
 
         }
 
@@ -152,12 +158,12 @@ function HuForm() {
       </button>
 
 
-
     </div>
 
   );
 
 }
+
 
 
 export default HuForm;

@@ -1,6 +1,6 @@
 import Sidebar from "../Components/sidebar";
 import { useObtenerHistorialQuery } from "../Services/historialApi";
-
+import API_URL from "../Config/Api";
 
 export default function History(){
 
