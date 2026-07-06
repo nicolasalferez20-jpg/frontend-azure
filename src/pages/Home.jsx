@@ -132,7 +132,7 @@ export default function Home() {
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Completado
                         </span>
                       </td>
-                      <td className="px-6 py-4.5 font-bold text-slate-900">US-{pdf.idHu}</td>
+                      <td className="px-6 py-4.5 font-bold text-slate-900">HU-{pdf.idHu}</td>
                       <td className="px-6 py-4.5 text-slate-600 truncate max-w-xs">{pdf.nombre}</td>
                       <td className="px-6 py-4.5 text-slate-500">{pdf.fecha || "Hace un momento"}</td>
                       <td className="px-6 py-4.5 text-center">

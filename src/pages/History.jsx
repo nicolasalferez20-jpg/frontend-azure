@@ -1,20 +1,21 @@
-import Sidebar from "../Components/sidebar";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useObtenerHistorialQuery } from "../Services/historialApi";
-import { 
-  Download, Loader2, AlertCircle, Search, 
-  Calendar, ChevronDown, SlidersHorizontal, 
-  Plus, FileSpreadsheet, RefreshCw, HelpCircle 
+import { Download,Loader2,AlertCircle,Search,Calendar,ChevronDown,SlidersHorizontal,Plus,FileSpreadsheet,RefreshCw,HelpCircle
 } from "lucide-react";
 
 export default function History() {
   const { data, isLoading, error } = useObtenerHistorialQuery();
+  const navigate = useNavigate();
+  const [busqueda, setBusqueda] = useState("");
+  const [fecha, setFecha] = useState("");
 
   return (
     <div className="flex min-h-screen bg-[#f8fafc] font-sans antialiased text-slate-800 w-full">
-
+      
       {/* CONTENIDO PRINCIPAL */}
       <main className="flex-1 p-10 overflow-y-auto">
-        
+
         {/* ENCABEZADO SUPERIOR (TÍTULO Y BOTONES DE ACCIÓN) */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div>
@@ -23,14 +24,17 @@ export default function History() {
               Gestión y seguimiento de documentos PDF generados por el sistema de automatización.
             </p>
           </div>
-          
+
           {/* Botones de acción del tope derecho */}
           <div className="flex items-center gap-3">
             <button className="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 bg-white text-slate-700 rounded-lg text-sm font-semibold hover:bg-slate-50 transition-colors shadow-xs cursor-pointer">
               <FileSpreadsheet size={16} className="text-slate-500" />
               Exportar Lista
             </button>
-            <button className="inline-flex items-center gap-2 px-4 py-2 bg-[#0078d4] text-white rounded-lg text-sm font-semibold hover:bg-[#0056b3] transition-colors shadow-xs cursor-pointer">
+            <button
+              onClick={() => navigate("/generar")}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#0078d4] text-white rounded-lg text-sm font-semibold hover:bg-[#0056b3] transition-colors shadow-xs cursor-pointer"
+            >
               <Plus size={16} />
               Nuevo Reporte
             </button>
@@ -39,16 +43,28 @@ export default function History() {
 
         {/* CONTENEDOR DE FILTROS (BARRAS DE BÚSQUEDA Y SELECTS) */}
         <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-[0_2px_8px_rgba(0,0,0,0.02)] mb-6 flex flex-col md:flex-row items-end md:items-center gap-4 w-full">
-          
+
           {/* Input de Búsqueda */}
           <div className="w-full md:flex-1">
-            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Buscar por ID o Nombre</label>
-            <div className="relative">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-              <input 
-                type="text" 
-                placeholder="         Ej: HU-30029 o Reporte Mensual..." 
-                className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg text-sm bg-white placeholder-slate-400 focus:outline-none focus:border-[#0078d4] focus:ring-1 focus:ring-[#0078d4] transition-all"
+            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+              Buscar por ID o Nombre
+            </label>
+            <div className="relative w-full">
+              {/* Icono Condicional */}
+              {!busqueda.trim() && (
+                <Search
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+                  size={18}
+                />
+              )}
+              <input
+                type="text"
+                value={busqueda}
+                onChange={(e) => setBusqueda(e.target.value)}
+                placeholder="          Ej: HU-30029 o Reporte Mensual..."
+                className={`w-full pr-4 py-2 border border-slate-200 rounded-lg text-sm bg-white placeholder-slate-400 focus:outline-none focus:border-[#0078d4] focus:ring-1 focus:ring-[#0078d4] transition-all ${
+                  !busqueda.trim() ? "pl-10" : "pl-4"
+                }`}
               />
             </div>
           </div>
@@ -69,13 +85,29 @@ export default function History() {
 
           {/* Filtro: Rango de Fecha */}
           <div className="w-full md:w-56">
-            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Rango de Fecha</label>
-            <div className="relative">
-              <Calendar className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
-              <select className="w-full appearance-none pl-10 pr-10 py-2 border border-slate-200 rounded-lg text-sm bg-white text-slate-700 focus:outline-none focus:border-[#0078d4] transition-all cursor-pointer">
-                <option>Últimos 30 días</option>
-                <option>Últimos 7 días</option>
-                <option>Este mes</option>
+            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+              Rango de Fecha
+            </label>
+            <div className="relative w-full">
+              {/* El icono de calendario solo se muestra si "fecha" está vacío */}
+              {!fecha && (
+                <Calendar
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+                  size={16}
+                />
+              )}
+              <select
+                value={fecha}
+                onChange={(e) => setFecha(e.target.value)}
+                className={`w-full appearance-none pr-10 py-2 border border-slate-200 rounded-lg text-sm bg-white text-slate-700 focus:outline-none focus:border-[#0078d4] focus:ring-1 focus:ring-[#0078d4] transition-all cursor-pointer ${
+                  !fecha ? "pl-10" : "pl-4"
+                }`}
+              >
+                {/* Opción por defecto para cuando no hay nada seleccionado */}
+                <option value=""></option>
+                <option value="30-dias">Últimos 30 días</option>
+                <option value="7-dias">Últimos 7 días</option>
+                <option value="este-mes">Este mes</option>
               </select>
               <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={16} />
             </div>
@@ -89,7 +121,7 @@ export default function History() {
 
         {/* PANEL PRINCIPAL DE LA TABLA */}
         <div className="bg-white border border-slate-200 rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.02)] overflow-hidden w-full">
-          
+
           {/* ⏳ ESTADO: CARGANDO */}
           {isLoading && (
             <div className="flex flex-col items-center justify-center py-24 gap-3 text-slate-400">
@@ -121,13 +153,13 @@ export default function History() {
                 </thead>
                 <tbody className="divide-y divide-slate-100 text-sm font-medium text-slate-700">
                   {data.map((pdf) => {
-                    // Renderizado condicional dinámico según las respuestas del mockup
+
                     const isError = pdf.estado?.toLowerCase() === 'error' || (!pdf.urlArchivo && !pdf.url_archivo);
                     const isProcessing = pdf.estado?.toLowerCase() === 'en proceso';
 
                     return (
                       <tr key={pdf.id} className="hover:bg-slate-50/60 transition-colors">
-                        
+
                         {/* 1. ESTADO BADGE */}
                         <td className="px-6 py-4">
                           {isError ? (
@@ -202,7 +234,7 @@ export default function History() {
             <span className="text-xs text-slate-500 font-medium">
               Mostrando 1-{data?.length || 0} de {data?.length || 0} reportes
             </span>
-            
+
             {/* Controladores de páginas numeradas */}
             <div className="inline-flex shadow-xs rounded-lg border border-slate-200 bg-white text-sm font-semibold overflow-hidden">
               <button className="px-3 py-1.5 text-slate-400 hover:bg-slate-50 border-r border-slate-200 transition-colors cursor-not-allowed">&lt;</button>
