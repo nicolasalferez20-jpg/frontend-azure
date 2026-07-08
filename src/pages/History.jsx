@@ -1,15 +1,34 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { useObtenerHistorialQuery,useEliminarPdfMutation } from "../Services/historialApi";
-import {Download,Trash2,Loader2,AlertCircle,Search,Calendar,ChevronDown,SlidersHorizontal,Plus,FileSpreadsheet,RefreshCw,HelpCircle,
+import ConfirmDeleteModal from "../Components/ConfirmDeleteModal";
+import {
+  useObtenerHistorialQuery,
+  useEliminarPdfMutation,
+} from "../Services/historialApi";
+import {
+  Download,
+  Trash2,
+  Loader2,
+  AlertCircle,
+  Search,
+  Calendar,
+  ChevronDown,
+  SlidersHorizontal,
+  Plus,
+  FileSpreadsheet,
+  RefreshCw,
+  HelpCircle,
 } from "lucide-react";
 
 export default function History() {
   const { data, isLoading, error } = useObtenerHistorialQuery();
-  const [eliminarPdf] = useEliminarPdfMutation();
+  const [eliminarPdf, { isLoading: eliminando }] = useEliminarPdfMutation();
   const navigate = useNavigate();
   const [busqueda, setBusqueda] = useState("");
   const [fecha, setFecha] = useState("");
+  const [mostrarModal, setMostrarModal] = useState(false);
+  const [pdfSeleccionado, setPdfSeleccionado] = useState(null);
 
   // Filtrar directamente los datos obtenidos desde la API
   const historialFiltrado = (data || []).filter((item) => {
@@ -21,6 +40,29 @@ export default function History() {
       item.nombre.toLowerCase().includes(texto)
     );
   });
+
+  const handleEliminar = (pdf) => {
+    setPdfSeleccionado(pdf);
+    setMostrarModal(true);
+  };
+
+const confirmarEliminacion = async () => {
+  if (!pdfSeleccionado) return;
+
+  try {
+    await eliminarPdf(pdfSeleccionado.nombre).unwrap();
+
+    toast.success("PDF eliminado correctamente.");
+
+    setMostrarModal(false);
+    setPdfSeleccionado(null);
+
+  } catch (error) {
+    console.error(error);
+
+    toast.error("No fue posible eliminar el PDF.");
+  }
+};
 
   return (
     <div className="flex min-h-screen bg-[#f8fafc] font-sans antialiased text-slate-800 w-full">
@@ -279,15 +321,12 @@ export default function History() {
                                 <Trash2
                                   size={18}
                                   className={`transition-colors ${
-                                    isProcessing
+                                    isProcessing || eliminando
                                       ? "pointer-events-none opacity-30 text-slate-300"
                                       : "text-red-500 hover:text-red-700 cursor-pointer"
                                   }`}
                                   title="Eliminar PDF"
-                                  onClick={() => {
-                                    // Aquí llamaremos posteriormente a la función para eliminar
-                                    console.log("Eliminar:", pdf.nombre);
-                                  }}
+                                  onClick={() => handleEliminar(pdf)}
                                 />
                               </>
                             )}
@@ -339,6 +378,16 @@ export default function History() {
 
         </div>
       </main>
+      <ConfirmDeleteModal
+        isOpen={mostrarModal}
+        nombreArchivo={pdfSeleccionado?.nombre}
+        onClose={() => {
+          setMostrarModal(false);
+          setPdfSeleccionado(null);
+        }}
+        onConfirm={confirmarEliminacion}
+        isLoading={eliminando}
+      />
     </div>
   );
 }

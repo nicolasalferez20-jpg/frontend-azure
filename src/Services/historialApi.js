@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import API_URL from "../Config/Api";
 
-
 export const historialApi = createApi({
   reducerPath: "historialApi",
 
@@ -20,8 +19,7 @@ export const historialApi = createApi({
 
     eliminarPdf: builder.mutation({
       query: (nombreArchivo) => ({
-        url: `/eliminar-pdf/${nombreArchivo}`,
-
+        url: `/historial/${encodeURIComponent(nombreArchivo)}`,
         method: "DELETE",
       }),
 
