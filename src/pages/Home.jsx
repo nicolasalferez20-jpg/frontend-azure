@@ -41,7 +41,8 @@ export default function Home() {
                 Busca y consulta el registro detallado de historias de usuario por su ID único.
               </p>
             </div>
-            <Link className="flex items-center gap-2 text-sm font-semibold text-[#0078d4] hover:text-[#0056b3] transition-colors mt-4" to="/historial">
+            <Link className="flex items-center gap-2 text-sm font-semibold text-[#0078d4] hover:text-[#0056b3] transition-colors mt-4" 
+            to="/historial">
               <History size={18} />
               Ir al historial &rarr;
             </Link>

@@ -3,24 +3,32 @@ import API_URL from "../Config/Api";
 
 
 export const historialApi = createApi({
+  reducerPath: "historialApi",
 
-    reducerPath: "historialApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: API_URL,
+  }),
 
-    baseQuery: fetchBaseQuery({
+  tagTypes: ["Historial"],
 
-        baseUrl: API_URL
+  endpoints: (builder) => ({
+    obtenerHistorial: builder.query({
+      query: () => "/historial",
 
+      providesTags: ["Historial"],
     }),
 
-    endpoints: (builder) => ({
+    eliminarPdf: builder.mutation({
+      query: (nombreArchivo) => ({
+        url: `/eliminar-pdf/${nombreArchivo}`,
 
-        obtenerHistorial: builder.query({
+        method: "DELETE",
+      }),
 
-            query: () => "/historial"
-        })
-
-    })
-
+      invalidatesTags: ["Historial"],
+    }),
+  }),
 });
 
-export const { useObtenerHistorialQuery } = historialApi;
+export const { useObtenerHistorialQuery, useEliminarPdfMutation } =
+  historialApi;
