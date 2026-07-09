@@ -62,7 +62,7 @@ export default function GeneratePDF() {
         {/* TARJETA */}
         <div className="w-full items-center max-w-md bg-white border border-slate-100 shadow-lg py-6 px-8 flex flex-col gap-10">
           {/* INPUT */}
-          <div className="mb- flex flex-col items-center gap-12">
+          <div className="flex flex-col items-center gap-12">
             <label className="block text-center text-[15px] font-semibold text-slate-800">
               ID de Historia de Usuario
             </label>

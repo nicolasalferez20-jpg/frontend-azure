@@ -11,7 +11,7 @@ import HomePage from "./pages/Home";
 import HistoryPage from "./pages/History";
 import GeneratePDF from "./pages/GeneratePDF";
 
-import "./App.css";
+
 import "./index.css";
 
 function App() {

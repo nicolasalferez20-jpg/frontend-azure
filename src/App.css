@@ -1,14 +1,10 @@
-/* CONSERVA SOLO ESTO */
+@import "tailwindcss";
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-@import "tailwindcss";
-
-/* El bloque corregido de #root que dejamos en el paso anterior */
-#root {
+}#root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
