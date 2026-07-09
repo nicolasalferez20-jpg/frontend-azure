@@ -60,10 +60,10 @@ export default function GeneratePDF() {
         </div>
 
         {/* TARJETA */}
-        <div className="w-full max-w-md bg-white border border-slate-100 shadow-lg py-6 px-8 flex flex-col gap-10">
+        <div className="w-full items-center max-w-md bg-white border border-slate-100 shadow-lg py-6 px-8 flex flex-col gap-10">
           {/* INPUT */}
-          <div className="flex flex-col gap-10">
-            <label className="block w-full text-left text-[15px] font-semibold text-slate-800">
+          <div className="mb- flex flex-col items-center gap-12">
+            <label className="block text-center text-[15px] font-semibold text-slate-800">
               ID de Historia de Usuario
             </label>
 
@@ -73,10 +73,10 @@ export default function GeneratePDF() {
               value={idHu}
               onChange={(e) => setIdHu(e.target.value)}
               disabled={loading}
-              className="w-full px-4 py-4 border-2 border-slate-300 rounded-none text-slate-700 placeholder-slate-300 focus:outline-none focus:border-[#0078d4] text-lg text-center font-medium transition-colors disabled:bg-slate-50"
+              className="w-96 px-4 py-4 border-2 border-slate-300 rounded-none text-slate-700 placeholder-slate-300 focus:outline-none focus:border-[#0078d4] text-lg text-center font-medium transition-colors disabled:bg-slate-50"
             />
 
-            <span className="block text-left text-xs italic text-slate-500">
+            <span className="block text-center text-[16px] italic text-slate-500">
               Ingrese el identificador numérico de su tarea o historia.
             </span>
           </div>
@@ -85,7 +85,7 @@ export default function GeneratePDF() {
           <button
             onClick={generar}
             disabled={loading || !idHu.trim()}
-            className="w-full h-16 bg-[#0078d4] hover:bg-[#006cc1] text-white font-bold px-6 rounded-none flex items-center justify-center gap-3 transition-all shadow-md active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-96 items-center h-12 bg-[#0078d4] hover:bg-[#006cc1] text-white font-bold px-6 rounded-none flex justify-center gap-3 transition-all shadow-md active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? (
               <>
