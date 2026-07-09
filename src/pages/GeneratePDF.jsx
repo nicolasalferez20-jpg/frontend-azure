@@ -69,7 +69,7 @@ export default function GeneratePDF() {
 
             <input
               type="number"
-              placeholder="Ej: 45290"
+              placeholder="Ej: 30290"
               value={idHu}
               onChange={(e) => setIdHu(e.target.value)}
               disabled={loading}

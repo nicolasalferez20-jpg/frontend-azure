@@ -10,7 +10,7 @@
 
 /* 3. Tipografía base y color de fondo general para tu aplicación */
 body {
-  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
   background-color: #f8fafc; /* El fondo gris muy claro ideal para que resalte la tarjeta blanca */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -23,6 +23,3 @@ body {
   flex-direction: column;
   width: 100%;
 }
-
-
-  

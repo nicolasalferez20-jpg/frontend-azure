@@ -3,14 +3,10 @@ import { historialApi } from "../Services/historialApi";
 
 
 export const store = configureStore({
+  reducer: {
+    [historialApi.reducerPath]: historialApi.reducer,
+  },
 
-    reducer: {
-
-        [historialApi.reducerPath]:
-        historialApi.reducer
-
-    },
-
-    middleware:(getDefaultMiddleware)=> getDefaultMiddleware()
-        .concat(historialApi.middleware)
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(historialApi.middleware),
 });

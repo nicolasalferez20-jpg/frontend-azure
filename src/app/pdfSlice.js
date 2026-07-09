@@ -2,46 +2,24 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const pdfSlice = createSlice({
+  name: "pdf",
 
-    name:"pdf",
+  initialState: {
+    idHu: null,
+    pdfUrl: null,
+  },
 
-    initialState:{
-
-        idHu:null,
-        pdfUrl:null
-
+  reducers: {
+    setIdHu: (state, action) => {
+      state.idHu = action.payload;
     },
 
-
-    reducers:{
-
-
-        setIdHu:(state,action)=>{
-
-            state.idHu = action.payload;
-
-        },
-
-
-        setPdfUrl:(state,action)=>{
-
-            state.pdfUrl = action.payload;
-
-        }
-
-
-    }
-
-
+    setPdfUrl: (state, action) => {
+      state.pdfUrl = action.payload;
+    },
+  },
 });
 
-
-export const {
-    setIdHu,
-    setPdfUrl
-
-} = pdfSlice.actions;
-
-
+export const { setIdHu, setPdfUrl } = pdfSlice.actions;
 
 export default pdfSlice.reducer;

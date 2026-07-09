@@ -2,23 +2,9 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ConfirmDeleteModal from "../Components/ConfirmDeleteModal";
-import {
-  useObtenerHistorialQuery,
-  useEliminarPdfMutation,
+import {useObtenerHistorialQuery,useEliminarPdfMutation,
 } from "../Services/historialApi";
-import {
-  Download,
-  Trash2,
-  Loader2,
-  AlertCircle,
-  Search,
-  Calendar,
-  ChevronDown,
-  SlidersHorizontal,
-  Plus,
-  FileSpreadsheet,
-  RefreshCw,
-  HelpCircle,
+import {Download,Trash2,Loader2,AlertCircle,Search,Calendar,ChevronDown,SlidersHorizontal,Plus,FileSpreadsheet,RefreshCw,HelpCircle,
 } from "lucide-react";
 
 export default function History() {
@@ -118,7 +104,7 @@ const confirmarEliminacion = async () => {
                 type="text"
                 value={busqueda}
                 onChange={(e) => setBusqueda(e.target.value)}
-                placeholder="          Ej: HU-30029 o Reporte Mensual..."
+                placeholder="          EJ: HU-30029 O NOMBRE..."
                 className={`w-full pr-4 py-2 border border-slate-200 rounded-lg text-sm bg-white placeholder-slate-400 focus:outline-none focus:border-[#0078d4] focus:ring-1 focus:ring-[#0078d4] transition-all ${
                   !busqueda.trim() ? "pl-10" : "pl-4"
                 }`}
@@ -197,7 +183,7 @@ const confirmarEliminacion = async () => {
         {/* PANEL PRINCIPAL DE LA TABLA */}
         <div className="bg-white border border-slate-200 rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.02)] overflow-hidden w-full">
 
-          {/* ⏳ ESTADO: CARGANDO */}
+          {/* ESTADO: CARGANDO */}
           {isLoading && (
             <div className="flex flex-col items-center justify-center py-24 gap-3 text-slate-400">
               <Loader2 size={32} className="animate-spin text-[#0078d4]" />
@@ -207,7 +193,7 @@ const confirmarEliminacion = async () => {
             </div>
           )}
 
-          {/* ❌ ESTADO: ERROR */}
+          {/* ESTADO: ERROR */}
           {error && (
             <div className="flex flex-col items-center justify-center py-16 gap-2 text-red-500">
               <AlertCircle size={32} />
