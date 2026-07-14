@@ -51,7 +51,7 @@ const confirmarEliminacion = async () => {
 };
 
   return (
-    <div className="flex min-h-screen bg-[#f8fafc] font-sans antialiased text-slate-800 w-full">
+    <div className="flex min-h-screen bg-[#f8fafc] font-sans antialiased text-slate-800 w-[98%] mx-auto">
 
       {/* CONTENIDO PRINCIPAL */}
       <main className="flex-1 p-10 overflow-y-auto">

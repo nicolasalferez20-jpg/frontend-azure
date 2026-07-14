@@ -11,8 +11,9 @@ function SuccessPdfModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <div className="w-full max-w-md h-7/12 rounded-2xl bg-white shadow-2xl">
+      <div className="w-full max-w-md h-8/12 rounded-2xl bg-white shadow-2xl">
         {/* Encabezado */}
+        <div><p className="text-amber-50" > . </p></div>
         <div className="flex flex-col gap-4 items-center px-8 pt-8">
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
             <CheckCircle className="h-8 w-8 text-green-600" />

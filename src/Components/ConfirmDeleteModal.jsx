@@ -11,9 +11,10 @@ function ConfirmDeleteModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <div className="w-full max-w-md h-6/12 rounded-2xl bg-white shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+      <div className="w-full max-w-md h-7/12 rounded-2xl bg-white shadow-2xl animate-in fade-in zoom-in-95 duration-200 pt-14">
         {/* Encabezado */}
-        <div className="flex flex-col gap-5 items-center px-8 pt-8">
+        <div><p className="text-amber-50" > . </p></div>
+        <div className="flex flex-col gap-5 items-center px-8 pt-14">
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-100">
             <AlertTriangle className="h-8 w-8 text-red-600" />
           </div>

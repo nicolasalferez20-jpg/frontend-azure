@@ -45,7 +45,7 @@ export default function GeneratePDF() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-73px)] bg-slate-50 flex flex-col border-b border-slate-200 justify-between font-sans antialiased text-slate-800 w-full">
+    <div className="min-h-[calc(100vh-73px)] bg-slate-50 flex flex-col border-b border-slate-200 justify-between font-sans antialiased text-slate-800 w-[98%] mx-auto">
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-12 w-full">
         {/* TÍTULO */}
         <div className="text-center mb-8 max-w-xl">
@@ -62,7 +62,8 @@ export default function GeneratePDF() {
         {/* TARJETA */}
         <div className="w-full items-center max-w-md bg-white border border-slate-100 shadow-lg py-6 px-8 flex flex-col gap-10">
           {/* INPUT */}
-          <div className="flex flex-col items-center gap-12">
+          <div><p className="text-amber-50" > . </p></div>
+          <div className="flex flex-col items-center gap-8">
             <label className="block text-center text-[15px] font-semibold text-slate-800">
               ID de Historia de Usuario
             </label>
@@ -99,6 +100,7 @@ export default function GeneratePDF() {
               </>
             )}
           </button>
+          <div><p className="text-amber-50" > . </p></div>
           {/* MODAL DE ÉXITO */}
           <SuccessPdfModal
             isOpen={mostrarModalExito}

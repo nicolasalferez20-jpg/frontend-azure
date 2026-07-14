@@ -9,9 +9,8 @@ export default function Home() {
 
   return (
 
-    <div className="min-h-screen bg-[#f8fafc] font-sans antialiased text-slate-800 w-full">
-
-      {/* CONTENIDO PRINCIPAL (Ocupa el 100% del ancho con p-10) */}
+    <div className="min-h-screen bg-[#f8fafc] font-sans antialiased text-slate-800 w-[98%] mx-auto">
+      
       <main className="w-full p-10 overflow-y-auto">
 
         {/* BANNER DE BIENVENIDA */}
