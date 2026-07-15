@@ -5,12 +5,12 @@ import {BrowserRouter as Router,
   Link,
 } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import { Zap, Home, FileText, History as HistoryIcon } from "lucide-react";
+import { Zap, Home,FileStack , FileText, History as HistoryIcon } from "lucide-react";
 
 import HomePage from "./pages/Home";
 import HistoryPage from "./pages/History";
 import GeneratePDF from "./pages/GeneratePDF";
-
+import ConsultaSprint from "./pages/ConsultaSprint";
 
 import "./index.css";
 
@@ -53,6 +53,14 @@ function App() {
 
             <Link
               className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
+              to="/consulta-sprint"
+            >
+              <FileStack size={18} />
+              Consultar Sprint
+            </Link>
+
+            <Link
+              className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
               to="/historial"
             >
               <HistoryIcon size={18} />
@@ -69,6 +77,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/generar" element={<GeneratePDF />} />
             <Route path="/historial" element={<HistoryPage />} />
+            <Route path="/consulta-sprint" element={<ConsultaSprint />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

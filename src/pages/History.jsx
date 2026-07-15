@@ -70,7 +70,9 @@ const confirmarEliminacion = async () => {
 
 
           <div className="flex items-center gap-3">
-            <button className="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 bg-white text-slate-700 rounded-lg text-sm font-semibold hover:bg-slate-50 transition-colors shadow-xs cursor-pointer">
+            <button 
+             onClick={() => navigate("/Consulta-Sprint")}
+             className="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 bg-white text-slate-700 rounded-lg text-sm font-semibold hover:bg-slate-50 transition-colors shadow-xs cursor-pointer">
               <FileSpreadsheet size={16} className="text-slate-500" />
               Exportar Lista
             </button>
