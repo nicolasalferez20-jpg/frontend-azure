@@ -11,7 +11,7 @@ export default function Home() {
 
     <div className="min-h-screen bg-[#f8fafc] font-sans antialiased text-slate-800 w-[98%] mx-auto">
       
-      <main className="w-full p-10 overflow-y-auto">
+      <main className="w-full p-5 overflow-y-auto">
 
         {/* BANNER DE BIENVENIDA */}
         <div className="relative overflow-hidden w-full bg-linear-to-r from-[#0078d4] via-[#0056b3] to-[#003a75] text-white p-10 rounded-2xl shadow-md mb-8">
@@ -33,7 +33,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
 
           {/* Tarjeta 1: Consultar Historial */}
-          <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between items-start min-h-50 hover:shadow-md transition-shadow">
+          <div className="bg-white border border-slate-100 rounded-2xl p-6 flex flex-col justify-between items-start min-h-50 hover:shadow-md transition-shadow">
             <div className="w-full">
               <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-[#0078d4] mb-4">
                 <Search size={20} />
@@ -56,7 +56,7 @@ export default function Home() {
           </div>
 
           {/* Tarjeta 2: Generar PDF */}
-          <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between items-start min-h-50 hover:shadow-md transition-shadow">
+          <div className="bg-white border border-slate-100 rounded-2xl p-6 flex flex-col justify-between items-start min-h-50 hover:shadow-md transition-shadow">
             <div className="w-full">
               <div className="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600 mb-4">
                 <PlusCircle size={20} />
@@ -79,7 +79,7 @@ export default function Home() {
           </div>
 
           {/* Tarjeta 3: Historial */}
-          <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between items-start min-h-50 hover:shadow-md transition-shadow">
+          <div className="bg-white border border-slate-100 rounded-2xl p-6 flex flex-col justify-between items-start min-h-50 hover:shadow-md transition-shadow">
             <div className="w-full">
               <div className="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 mb-4">
                 <Clock size={20} />

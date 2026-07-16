@@ -1,12 +1,7 @@
 
 @import "tailwindcss";
 
-/* 2. Reset global básico para evitar márgenes fantasmas de los navegadores */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
 
 /* 3. Tipografía base y color de fondo general para tu aplicación */
 body {

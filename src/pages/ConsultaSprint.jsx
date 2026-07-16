@@ -78,7 +78,6 @@ export default function ConsultaSprint() {
 
         {/* TARJETA */}
         <div className="w-full items-center max-w-md bg-white border border-slate-100 shadow-lg py-6 px-8 flex flex-col gap-10">
-          <div><p className="text-white">.</p></div>
 
           {/* SELECT */}
           <div className="flex flex-col items-center gap-8">
@@ -124,10 +123,7 @@ export default function ConsultaSprint() {
               </>
             )}
           </button>
-
-          <div>
-            <p className="text-white">.</p>
-          </div>
+          
         </div>
       </main>
 

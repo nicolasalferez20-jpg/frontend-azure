@@ -14,27 +14,24 @@ function SuccessSprintModal({ isOpen, onClose, onHistory, resultado }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <div className="w-full max-w-lg rounded-2xl bg-white shadow-2xl" items-center justify-center>
-        <div>
-          <p className="text-white">.</p>
-        </div>
-
+        
         {/* Encabezado */}
-        <div className="flex flex-col items-center gap-4 px-8 pt-8">
+        <div className="flex flex-col items-center gap-4 px-8 pt-4">
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
-            <CheckCircle className="h-8 w-8 text-green-600" />
+            <CheckCircle className="h-10 w-10 text-green-600" />
           </div>
 
-          <h2 className="mt-5 text-2xl font-bold text-slate-800">
+          <h2 className="mt-2 text-2xl font-bold text-slate-800">
             ¡Proceso completado!
           </h2>
 
-          <p className="mt-3 text-center text-slate-600">
+          <p className="mt-0.5 text-center text-slate-600">
             Los documentos del Sprint fueron generados y almacenados
             correctamente.
           </p>
 
           {/* Resumen */}
-          <div className="mt-6 w-full rounded-lg bg-slate-100 p-5">
+          <div className="mt-2 w-full rounded-lg bg-slate-100 p-2">
             <div className="flex justify-center border-b border-slate-300 pb-3">
               <span className="font-medium text-slate-600">Sprint : </span>
 
@@ -67,10 +64,10 @@ function SuccessSprintModal({ isOpen, onClose, onHistory, resultado }) {
           </div>
 
           {/* Botones */}
-          <div className="mt-8 flex justify-center gap-3 px-6 py-5">
+          <div className="mt-1 flex justify-center gap-10 px-6 py-5">
             <button
               onClick={onClose}
-              className="rounded-lg h-10 w-28 border border-slate-300 font-medium text-slate-700 transition hover:bg-slate-100"
+              className="rounded-lg h-10 w-32 border border-slate-300 font-medium text-slate-700 transition hover:bg-slate-100"
             >
               Cerrar
             </button>
@@ -82,7 +79,7 @@ function SuccessSprintModal({ isOpen, onClose, onHistory, resultado }) {
               Ver historial
             </button>
           </div>
-          <div className="text-white"><p>.</p></div>
+          
         </div>
       </div>
     </div>

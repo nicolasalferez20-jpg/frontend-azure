@@ -54,9 +54,9 @@ const confirmarEliminacion = async () => {
     <div className="flex min-h-screen bg-[#f8fafc] font-sans antialiased text-slate-800 w-[98%] mx-auto">
 
       {/* CONTENIDO PRINCIPAL */}
-      <main className="flex-1 p-10 overflow-y-auto">
+      <main className="flex-1 p-5 overflow-y-auto">
         {/* ENCABEZADO SUPERIOR */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-3">
           <div>
             <h2 className="text-xl font-bold text-slate-900">
               Historial de Reportes
