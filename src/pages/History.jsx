@@ -212,7 +212,7 @@ const confirmarEliminacion = async () => {
                 <thead>
                   <tr className="border-b border-slate-200 bg-slate-50/50 text-xs font-bold text-slate-500 uppercase tracking-wider">
                     <th className="px-6 py-4">Estado</th>
-                    <th className="px-6 py-4">ID Historia</th>
+                    <th className="px-6 py-4">N° Sprint</th>
                     <th className="px-6 py-4">Nombre del Documento</th>
                     <th className="px-6 py-4">Fecha y Hora</th>
                     <th className="px-6 py-4 text-center">Acción</th>
@@ -251,16 +251,12 @@ const confirmarEliminacion = async () => {
                           )}
                         </td>
 
-                        {/* 2. ID HISTORIA (Enlace Azul) */}
+                        {/* 2. N° Sprint */}
                         <td className="px-6 py-4">
-                          <a
-                            href={`#hu-${pdf.idHu}`}
-                            className="text-[#0078d4] hover:underline font-semibold"
-                          >
-                            HU-{pdf.idHu}
-                          </a>
-                        </td>
-
+                            <span className="text-[#0078d4] font-semibold">
+                              {pdf.sprint || 'Sin Sprint'}
+                            </span>
+                          </td>
                         {/* 3. NOMBRE DEL DOCUMENTO */}
                         <td className="px-6 py-4 text-slate-600 font-normal">
                           {pdf.nombre}

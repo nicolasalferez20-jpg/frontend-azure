@@ -1,39 +1,58 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import SuccessSprintModal from "../Components/SuccessSprintModal";
 
 import { obtenerSprints, generarPdfSprint } from "../Services/sprintService";
+import { historialApi } from "../Services/historialApi";
 
 import { FileStack, Loader2 } from "lucide-react";
 
 export default function ConsultaSprint() {
   const [sprint, setSprint] = useState("");
   const [sprints, setSprints] = useState([]);
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [mostrarModal, setMostrarModal] = useState(false);
   const [resultado, setResultado] = useState(null);
-  const [loading, setLoading] = useState(false);
+
+  // Empieza cargando
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let activo = true;
+
+    const cargarSprints = async () => {
+      try {
+        const data = await obtenerSprints();
+
+        if (activo) {
+          setSprints(data);
+        }
+      } catch (error) {
+        console.error(error);
+
+        if (activo) {
+          toast.error("No fue posible cargar los Sprint.");
+        }
+      } finally {
+        if (activo) {
+          setLoading(false);
+        }
+      }
+    };
+
     cargarSprints();
+
+    return () => {
+      activo = false;
+    };
   }, []);
-
-  const cargarSprints = async () => {
-    try {
-      setLoading(true);
-
-      const data = await obtenerSprints();
-
-      setSprints(data);
-    } catch (error) {
-      console.error(error);
-      toast.error("No fue posible cargar los Sprint.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  
   const generar = async () => {
     if (!sprint) {
       toast.error("Seleccione un Sprint.");
@@ -43,19 +62,34 @@ export default function ConsultaSprint() {
     try {
       setLoading(true);
 
+      // Generar PDFs del Sprint seleccionado
       const respuesta = await generarPdfSprint(sprint);
 
-      console.log(respuesta);
+      console.log("Respuesta generación:", respuesta);
 
+      // =================================================
+      // ACTUALIZAR AUTOMÁTICAMENTE EL HISTORIAL
+      // =================================================
+
+      dispatch(
+        historialApi.util.invalidateTags(["Historial"])
+      );
+
+      // Guardar respuesta para el modal
       setResultado(respuesta);
 
+      // Mostrar modal
       setMostrarModal(true);
 
+      // Limpiar Sprint seleccionado
       setSprint("");
-    } catch (error) {
-      console.error(error);
 
-      toast.error("Ocurrió un error generando los PDFs del Sprint.");
+    } catch (error) {
+      console.error("Error generando PDFs:", error);
+
+      toast.error(
+        "Ocurrió un error generando los PDFs del Sprint."
+      );
     } finally {
       setLoading(false);
     }
@@ -63,7 +97,9 @@ export default function ConsultaSprint() {
 
   return (
     <div className="min-h-[calc(100vh-73px)] bg-slate-50 flex flex-col border-b border-slate-200 justify-between font-sans antialiased text-slate-800 w-[98%] mx-auto">
+
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-12 w-full">
+
         {/* TÍTULO */}
         <div className="text-center mb-8 max-w-xl">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-blue-600 mb-4">
@@ -81,6 +117,7 @@ export default function ConsultaSprint() {
 
           {/* SELECT */}
           <div className="flex flex-col items-center gap-8">
+
             <label className="block text-center text-[15px] font-semibold text-slate-800">
               Sprint
             </label>
@@ -91,10 +128,15 @@ export default function ConsultaSprint() {
               disabled={loading}
               className="w-96 px-4 py-4 border-2 border-slate-300 rounded-none text-slate-700 text-lg font-medium focus:outline-none focus:border-[#0078d4] transition-colors disabled:bg-slate-50"
             >
-              <option value="">Seleccione un Sprint</option>
+              <option value="">
+                Seleccione un Sprint
+              </option>
 
               {sprints.map((item) => (
-                <option key={item.path} value={item.path}>
+                <option
+                  key={item.path}
+                  value={item.path}
+                >
                   {item.name}
                 </option>
               ))}
@@ -103,6 +145,7 @@ export default function ConsultaSprint() {
             <span className="block text-center text-[16px] italic text-slate-500">
               Seleccione el Sprint del cual desea generar toda la documentación.
             </span>
+
           </div>
 
           {/* BOTÓN */}
@@ -113,7 +156,10 @@ export default function ConsultaSprint() {
           >
             {loading ? (
               <>
-                <Loader2 size={20} className="animate-spin" />
+                <Loader2
+                  size={20}
+                  className="animate-spin"
+                />
                 <span>Generando...</span>
               </>
             ) : (
@@ -123,7 +169,7 @@ export default function ConsultaSprint() {
               </>
             )}
           </button>
-          
+
         </div>
       </main>
 
@@ -133,6 +179,8 @@ export default function ConsultaSprint() {
           Azure Enterprise Core • V4.2.1
         </p>
       </footer>
+
+      {/* MODAL */}
       <SuccessSprintModal
         isOpen={mostrarModal}
         resultado={resultado}
@@ -145,6 +193,7 @@ export default function ConsultaSprint() {
           navigate("/historial");
         }}
       />
+
     </div>
   );
 }

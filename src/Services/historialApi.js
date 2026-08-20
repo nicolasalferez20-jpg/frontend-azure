@@ -11,12 +11,14 @@ export const historialApi = createApi({
   tagTypes: ["Historial"],
 
   endpoints: (builder) => ({
+    // Obtener historial
     obtenerHistorial: builder.query({
       query: () => "/historial",
 
       providesTags: ["Historial"],
     }),
 
+    // Eliminar PDF
     eliminarPdf: builder.mutation({
       query: (nombreArchivo) => ({
         url: `/historial/${encodeURIComponent(nombreArchivo)}`,
@@ -25,8 +27,26 @@ export const historialApi = createApi({
 
       invalidatesTags: ["Historial"],
     }),
+
+    // Generar PDFs de un Sprint
+    generarPdfsSprint: builder.mutation({
+      query: (iterationPath) => ({
+        url: "/generar-pdfs-sprint",
+        method: "GET",
+        params: {
+          iteration_path: iterationPath,
+        },
+      }),
+
+      // Después de generar los PDFs,
+      // actualizar automáticamente el historial
+      invalidatesTags: ["Historial"],
+    }),
   }),
 });
 
-export const { useObtenerHistorialQuery, useEliminarPdfMutation } =
-  historialApi;
+export const {
+  useObtenerHistorialQuery,
+  useEliminarPdfMutation,
+  useGenerarPdfsSprintMutation,
+} = historialApi;
