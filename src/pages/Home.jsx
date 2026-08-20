@@ -145,7 +145,7 @@ export default function Home() {
                 <thead>
                   <tr className="bg-slate-50 text-xs font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100">
                     <th className="px-6 py-4">Estado</th>
-                    <th className="px-6 py-4">ID Historia</th>
+                    <th className="px-6 py-4">N° Sprint</th>
                     <th className="px-6 py-4">Nombre del Documento</th>
                     <th className="px-6 py-4">Fecha y Hora</th>
                     <th className="px-6 py-4 text-center">Acción</th>
@@ -164,7 +164,7 @@ export default function Home() {
                         </span>
                       </td>
                       <td className="px-6 py-4.5 font-bold text-slate-900">
-                        HU-{pdf.idHu}
+                        HU-{pdf.sprint}
                       </td>
                       <td className="px-6 py-4.5 text-slate-600 truncate max-w-xs">
                         {pdf.nombre}
