@@ -33,7 +33,7 @@ export async function generarPdfSprint(iterationPath) {
  */
 export async function generarDocxSprint(iterationPath) {
   const response = await fetch(
-    `${API_URL}/generar-docxs-sprint?iteration_path=${encodeURIComponent(iterationPath)}`
+    `${API_URL}/generar-docx-sprint?iteration_path=${encodeURIComponent(iterationPath)}`
   );
 
   if (!response.ok) {

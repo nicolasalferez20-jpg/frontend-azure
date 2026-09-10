@@ -6,7 +6,7 @@ import { generarPdf } from "../Services/PDFservice";
 import { generarDocx } from "../Services/DOCXservice";
 import SuccessPdfModal from "../Components/SuccessPdfModal";
 
-import { FileText, Loader2, ExternalLink } from "lucide-react";
+import { FileText, Loader2 } from "lucide-react";
 
 export default function GeneratePDF() {
   const navigate = useNavigate();
