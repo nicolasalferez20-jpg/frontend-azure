@@ -1,6 +1,6 @@
 import { CheckCircle } from "lucide-react";
 
-function SuccessSprintModal({ isOpen, onClose, onHistory, resultado }) {
+function SuccessSprintModal({ isOpen, onClose, onHistory, resultado, formato = "pdf" }) {
   if (!isOpen || !resultado) return null;
 
   const sprint = resultado.sprint.split("\\").pop();
@@ -45,7 +45,7 @@ function SuccessSprintModal({ isOpen, onClose, onHistory, resultado }) {
             </div>
 
             <div className="flex justify-center py-3 border-b border-slate-300">
-              <span className="font-medium text-slate-600">PDFs generados : </span>
+              <span className="font-medium text-slate-600">{formato === "pdf" ? "PDFs" : "DOCXs"} generados : </span>
 
               <span className="font-bold text-green-600"> {totalGenerados}</span>
             </div>

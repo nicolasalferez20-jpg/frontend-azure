@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 import SuccessSprintModal from "../Components/SuccessSprintModal";
 
-import { obtenerSprints, generarPdfSprint } from "../Services/sprintService";
+import { obtenerSprints, generarPdfSprint, generarDocxSprint } from "../Services/sprintService";
 import { historialApi } from "../Services/historialApi";
 
 import { FileStack, Loader2 } from "lucide-react";
@@ -19,6 +19,7 @@ export default function ConsultaSprint() {
 
   const [mostrarModal, setMostrarModal] = useState(false);
   const [resultado, setResultado] = useState(null);
+  const [formato, setFormato] = useState("pdf");
 
   // Empieza cargando
   const [loading, setLoading] = useState(true);
@@ -62,8 +63,11 @@ export default function ConsultaSprint() {
     try {
       setLoading(true);
 
-      // Generar PDFs del Sprint seleccionado
-      const respuesta = await generarPdfSprint(sprint);
+      // Generar documentos del Sprint seleccionado
+      const respuesta =
+        formato === "pdf"
+          ? await generarPdfSprint(sprint)
+          : await generarDocxSprint(sprint);
 
       console.log("Respuesta generación:", respuesta);
 
@@ -88,7 +92,7 @@ export default function ConsultaSprint() {
       console.error("Error generando PDFs:", error);
 
       toast.error(
-        "Ocurrió un error generando los PDFs del Sprint."
+        `Ocurrió un error generando los ${formato === "pdf" ? "PDFs" : "DOCXs"} del Sprint.`
       );
     } finally {
       setLoading(false);
@@ -148,6 +152,23 @@ export default function ConsultaSprint() {
 
           </div>
 
+          {/* SELECT FORMATO */}
+          <div className="flex flex-col items-center gap-4">
+            <label className="block text-center text-[15px] font-semibold text-slate-800">
+              Formato de documento
+            </label>
+
+            <select
+              value={formato}
+              onChange={(e) => setFormato(e.target.value)}
+              disabled={loading}
+              className="w-96 px-4 py-4 border-2 border-slate-300 rounded-none text-slate-700 text-lg font-medium focus:outline-none focus:border-[#0078d4] transition-colors disabled:bg-slate-50"
+            >
+              <option value="pdf">PDF</option>
+              <option value="docx">DOCX</option>
+            </select>
+          </div>
+
           {/* BOTÓN */}
           <button
             onClick={generar}
@@ -165,7 +186,7 @@ export default function ConsultaSprint() {
             ) : (
               <>
                 <FileStack size={20} />
-                <span>Generar PDFs del Sprint</span>
+                <span>Generar {formato === "pdf" ? "PDFs" : "DOCXs"} del Sprint</span>
               </>
             )}
           </button>
@@ -184,6 +205,7 @@ export default function ConsultaSprint() {
       <SuccessSprintModal
         isOpen={mostrarModal}
         resultado={resultado}
+        formato={formato}
         onClose={() => {
           setMostrarModal(false);
           setResultado(null);

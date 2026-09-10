@@ -6,6 +6,7 @@ function SuccessPdfModal({
   onHistory,
   nombreArchivo,
   pdfUrl,
+  formato = "pdf",
 }) {
   if (!isOpen) return null;
 
@@ -20,7 +21,7 @@ function SuccessPdfModal({
           </div>
 
           <h2 className="mt-3 text-2xl font-bold text-slate-800">
-            ¡PDF generado correctamente!
+            ¡{formato === "pdf" ? "PDF" : "DOCX"} generado correctamente!
           </h2>
 
           <p className="mt-2 text-center text-slate-600">
@@ -41,7 +42,7 @@ function SuccessPdfModal({
               className="mt-6 inline-flex h-14 w-30 items-center justify-center gap-2 rounded-lg bg-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700"
             >
               <ExternalLink size={18} />
-              Abrir PDF
+              Abrir {formato === "pdf" ? "PDF" : "DOCX"}
             </a>
           )}
           {/* Botones */}

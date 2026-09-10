@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import { generarPdf } from "../Services/PDFservice";
+import { generarDocx } from "../Services/DOCXservice";
 import SuccessPdfModal from "../Components/SuccessPdfModal";
 
 import { FileText, Loader2, ExternalLink } from "lucide-react";
@@ -13,6 +14,7 @@ export default function GeneratePDF() {
   const [idHu, setIdHu] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [formato, setFormato] = useState("pdf");
   const [pdfUrl, setPdfUrl] = useState("");
 
   const [mostrarModalExito, setMostrarModalExito] = useState(false);
@@ -28,7 +30,10 @@ export default function GeneratePDF() {
       setLoading(true);
       setPdfUrl("");
 
-      const respuesta = await generarPdf(idHu);
+      const respuesta =
+        formato === "pdf"
+          ? await generarPdf(idHu)
+          : await generarDocx(idHu);
 
       if (respuesta.url_archivo) {
         setPdfUrl(respuesta.url_archivo);
@@ -38,7 +43,7 @@ export default function GeneratePDF() {
       setMostrarModalExito(true);
     } catch (error) {
       console.error(error);
-      toast.error("Ocurrió un error generando el PDF.");
+      toast.error(`Ocurrió un error generando el ${formato === "pdf" ? "PDF" : "DOCX"}.`);
     } finally {
       setLoading(false);
     }
@@ -82,6 +87,23 @@ export default function GeneratePDF() {
             </span>
           </div>
 
+          {/* SELECT FORMATO */}
+          <div className="flex flex-col items-center gap-4">
+            <label className="block text-center text-[15px] font-semibold text-slate-800">
+              Formato de documento
+            </label>
+
+            <select
+              value={formato}
+              onChange={(e) => setFormato(e.target.value)}
+              disabled={loading}
+              className="w-96 px-4 py-4 border-2 border-slate-300 rounded-none text-slate-700 text-lg font-medium focus:outline-none focus:border-[#0078d4] transition-colors disabled:bg-slate-50"
+            >
+              <option value="pdf">PDF</option>
+              <option value="docx">DOCX</option>
+            </select>
+          </div>
+
           {/* BOTÓN */}
           <button
             onClick={generar}
@@ -96,7 +118,7 @@ export default function GeneratePDF() {
             ) : (
               <>
                 <FileText size={20} className="stroke-[2.5]" />
-                <span>Generar PDF</span>
+                <span>Generar {formato === "pdf" ? "PDF" : "DOCX"}</span>
               </>
             )}
           </button>
@@ -110,6 +132,7 @@ export default function GeneratePDF() {
               pdfGenerado?.nombre_archivo
             }
             pdfUrl={pdfUrl}
+            formato={formato}
             onClose={() => {
               setMostrarModalExito(false);
               setIdHu("");

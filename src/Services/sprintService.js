@@ -1,4 +1,4 @@
-const API_URL = "https://automatizacion-backend.onrender.com";
+import API_URL from "../Config/Api";
 
 /**
  * Obtiene todos los Sprint disponibles.
@@ -23,6 +23,21 @@ export async function generarPdfSprint(iterationPath) {
 
   if (!response.ok) {
     throw new Error("No fue posible generar los PDFs del Sprint.");
+  }
+
+  return await response.json();
+}
+
+/**
+ * Genera los DOCXs de todas las HU de un Sprint.
+ */
+export async function generarDocxSprint(iterationPath) {
+  const response = await fetch(
+    `${API_URL}/generar-docxs-sprint?iteration_path=${encodeURIComponent(iterationPath)}`
+  );
+
+  if (!response.ok) {
+    throw new Error("No fue posible generar los DOCXs del Sprint.");
   }
 
   return await response.json();
