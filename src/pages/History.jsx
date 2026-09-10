@@ -63,7 +63,7 @@ const confirmarEliminacion = async () => {
             </h2>
 
             <p className="text-sm text-slate-500 mt-0.5">
-              Gestión y seguimiento de documentos PDF generados por el sistema
+              Gestión y seguimiento de documentos generados por el sistema
               de automatización.{" "}
             </p>
           </div>
@@ -214,6 +214,7 @@ const confirmarEliminacion = async () => {
                     <th className="px-6 py-4">Estado</th>
                     <th className="px-6 py-4">N° Sprint</th>
                     <th className="px-6 py-4">Nombre del Documento</th>
+                    <th className="px-6 py-4">Tipo</th>
                     <th className="px-6 py-4">Fecha y Hora</th>
                     <th className="px-6 py-4 text-center">Acción</th>
                   </tr>
@@ -262,12 +263,23 @@ const confirmarEliminacion = async () => {
                           {pdf.nombre}
                         </td>
 
-                        {/* 4. FECHA Y HORA */}
+                        {/* 4. TIPO */}
+                        <td className="px-6 py-4">
+                          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${
+                            pdf.tipo === "docx"
+                              ? "bg-indigo-50 text-indigo-700"
+                              : "bg-blue-50 text-blue-700"
+                          }`}>
+                            {pdf.tipo?.toUpperCase() || "N/A"}
+                          </span>
+                        </td>
+
+                        {/* 5. FECHA Y HORA */}
                         <td className="px-6 py-4 text-slate-500 font-normal">
                           {pdf.fecha || "24 Oct 2023, 14:30"}
                         </td>
 
-                        {/* 5. ACCIONES (Descargar / Reintentar / Info) */}
+                        {/* 6. ACCIONES (Descargar / Reintentar / Info) */}
                         <td className="px-6 py-4">
                           <div className="flex items-center justify-center gap-3">
                             {isError ? (
@@ -296,7 +308,7 @@ const confirmarEliminacion = async () => {
                                       ? "pointer-events-none opacity-30"
                                       : "cursor-pointer"
                                   }`}
-                                  title="Descargar PDF"
+                                   title="Descargar documento"
                                 >
                                   <Download size={18} />
                                 </a>
@@ -309,7 +321,7 @@ const confirmarEliminacion = async () => {
                                       ? "pointer-events-none opacity-30 text-slate-300"
                                       : "text-red-500 hover:text-red-700 cursor-pointer"
                                   }`}
-                                  title="Eliminar PDF"
+                                   title="Eliminar documento"
                                   onClick={() => handleEliminar(pdf)}
                                 />
                               </>

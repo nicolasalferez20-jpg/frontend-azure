@@ -147,6 +147,7 @@ export default function Home() {
                     <th className="px-6 py-4">Estado</th>
                     <th className="px-6 py-4">N° Sprint</th>
                     <th className="px-6 py-4">Nombre del Documento</th>
+                    <th className="px-6 py-4">Tipo</th>
                     <th className="px-6 py-4">Fecha y Hora</th>
                     <th className="px-6 py-4 text-center">Acción</th>
                   </tr>
@@ -168,6 +169,15 @@ export default function Home() {
                       </td>
                       <td className="px-6 py-4.5 text-slate-600 truncate max-w-xs">
                         {pdf.nombre}
+                      </td>
+                      <td className="px-6 py-4.5">
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${
+                          pdf.tipo === "docx"
+                            ? "bg-indigo-50 text-indigo-700"
+                            : "bg-blue-50 text-blue-700"
+                        }`}>
+                          {pdf.tipo?.toUpperCase() || "N/A"}
+                        </span>
                       </td>
                       <td className="px-6 py-4.5 text-slate-500">
                         {pdf.fecha || "Hace un momento"}
