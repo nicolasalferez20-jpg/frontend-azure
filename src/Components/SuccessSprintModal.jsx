@@ -7,7 +7,8 @@ function SuccessSprintModal({ isOpen, onClose, onHistory, resultado, formato = "
 
   const totalHistorias = resultado.total_historias;
 
-  const totalGenerados = resultado.pdfs_generados.length;
+  const generados = resultado.pdfs_generados || resultado.docxs_generados || [];
+  const totalGenerados = generados.length;
 
   const totalErrores = resultado.errores.length;
 
