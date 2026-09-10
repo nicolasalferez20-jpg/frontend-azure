@@ -23,7 +23,7 @@ export default function Home() {
             </h1>
             <p className="text-blue-100 text-base leading-relaxed font-medium">
               Automatiza la extracción de Historias de Usuario desde Azure
-              DevOps y genera documentos PDF profesionales de forma rápida y
+              DevOps y genera documentos PDF o DOCX profesionales de forma rápida y
               segura.
             </p>
           </div>
@@ -62,11 +62,12 @@ export default function Home() {
                 <PlusCircle size={20} />
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-2">
-                Generar PDF
+                Generar documentacion 
+                azure
               </h3>
               <p className="text-sm text-slate-500 leading-relaxed">
                 Inicia el proceso automatizado para convertir tus Azure Boards
-                en reportes PDF.
+                en reportes PDF o DOCX.
               </p>
             </div>
             <Link

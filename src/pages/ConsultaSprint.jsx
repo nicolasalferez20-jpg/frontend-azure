@@ -111,13 +111,28 @@ export default function ConsultaSprint() {
           </h1>
 
           <p className="text-base max-w-md md:text-lg text-slate-600 leading-relaxed">
-            Seleccione un Sprint para generar automáticamente la documentación
-            PDF de todas las Historias de Usuario asociadas.
+            Seleccione un Sprint para generar automáticamente la documentación de todas las Historias de Usuario asociadas.
           </p>
         </div>
 
         {/* TARJETA */}
         <div className="w-full items-center max-w-md bg-white border border-slate-100 shadow-lg py-6 px-8 flex flex-col gap-10">
+          {/* SELECT FORMATO */}
+          <div className="flex flex-col items-center gap-4">
+            <label className="block text-center text-[15px] font-semibold text-slate-800">
+              Formato del documento
+            </label>
+
+            <select
+              value={formato}
+              onChange={(e) => setFormato(e.target.value)}
+              disabled={loading}
+              className="w-96 px-4 py-4 border-2 border-slate-300 rounded-none text-slate-700 text-lg font-medium focus:outline-none focus:border-[#0078d4] transition-colors disabled:bg-slate-50"
+            >
+              <option value="pdf">PDF</option>
+              <option value="docx">DOCX</option>
+            </select>
+          </div>
 
           {/* SELECT */}
           <div className="flex flex-col items-center gap-8">
@@ -152,23 +167,6 @@ export default function ConsultaSprint() {
 
           </div>
 
-          {/* SELECT FORMATO */}
-          <div className="flex flex-col items-center gap-4">
-            <label className="block text-center text-[15px] font-semibold text-slate-800">
-              Formato de documento
-            </label>
-
-            <select
-              value={formato}
-              onChange={(e) => setFormato(e.target.value)}
-              disabled={loading}
-              className="w-96 px-4 py-4 border-2 border-slate-300 rounded-none text-slate-700 text-lg font-medium focus:outline-none focus:border-[#0078d4] transition-colors disabled:bg-slate-50"
-            >
-              <option value="pdf">PDF</option>
-              <option value="docx">DOCX</option>
-            </select>
-          </div>
-
           {/* BOTÓN */}
           <button
             onClick={generar}
@@ -186,7 +184,7 @@ export default function ConsultaSprint() {
             ) : (
               <>
                 <FileStack size={20} />
-                <span>Generar {formato === "pdf" ? "PDFs" : "DOCXs"} del Sprint</span>
+                <span>Generar {formato === "pdf" ? "PDFS" : "DOCXS"} del Sprint</span>
               </>
             )}
           </button>

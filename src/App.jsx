@@ -48,7 +48,7 @@ function App() {
               to="/generar"
             >
               <FileText size={18} />
-              Generar PDF
+              Generar PDF o DOCX
             </Link>
 
             <Link
