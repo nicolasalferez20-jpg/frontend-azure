@@ -20,7 +20,7 @@ function ConfirmDeleteModal({
           </div>
 
           <h2 className="mt-2 text-xl font-bold text-slate-800">
-            Eliminar PDF
+            Eliminar Documento
           </h2>
 
           <p className="mt-2 text-center text-slate-600">

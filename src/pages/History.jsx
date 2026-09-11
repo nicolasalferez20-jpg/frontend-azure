@@ -38,7 +38,7 @@ const confirmarEliminacion = async () => {
   try {
     await eliminarPdf(pdfSeleccionado.nombre).unwrap();
 
-    toast.success("PDF eliminado correctamente.");
+    toast.success("Documento eliminado correctamente.");
 
     setMostrarModal(false);
     setPdfSeleccionado(null);
@@ -46,7 +46,7 @@ const confirmarEliminacion = async () => {
   } catch (error) {
     console.error(error);
 
-    toast.error("No fue posible eliminar el PDF.");
+    toast.error("No fue posible eliminar el Documento.");
   }
 };
 

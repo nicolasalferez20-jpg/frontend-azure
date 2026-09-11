@@ -77,7 +77,7 @@ export default function GeneratePDF() {
               value={formato}
               onChange={(e) => setFormato(e.target.value)}
               disabled={loading}
-              className="w-96 px-4 py-4 border-2 border-slate-300 rounded-none text-slate-700 text-lg font-medium focus:outline-none focus:border-[#0078d4] transition-colors disabled:bg-slate-50"
+              className="w-40 px-3 py-3 border-2 text-center border-slate-300 rounded-2xl text-slate-700 font-medium focus:outline-none focus:border-[#0078d4] transition-colors disabled:bg-slate-50"
             >
               <option value="pdf">PDF</option>
               <option value="docx">DOCX</option>
@@ -86,7 +86,7 @@ export default function GeneratePDF() {
 
           {/* INPUT */}
 
-          <div className="flex flex-col items-center gap-8">
+          <div className="flex flex-col items-center gap-4">
             <label className="block text-center text-[15px] font-semibold text-slate-800">
               ID de Historia de Usuario
             </label>
@@ -97,7 +97,7 @@ export default function GeneratePDF() {
               value={idHu}
               onChange={(e) => setIdHu(e.target.value)}
               disabled={loading}
-              className="w-96 px-4 py-4 border-2 border-slate-300 rounded-none text-slate-700 placeholder-slate-300 focus:outline-none focus:border-[#0078d4] text-lg text-center font-medium transition-colors disabled:bg-slate-50"
+              className="w-90 px-4 py-4 border-2 border-slate-300 rounded-none text-slate-700 placeholder-slate-300 focus:outline-none focus:border-[#0078d4] text-lg text-center font-medium transition-colors disabled:bg-slate-50"
             />
 
             <span className="block text-center text-[16px] italic text-slate-500">
@@ -109,7 +109,7 @@ export default function GeneratePDF() {
           <button
             onClick={generar}
             disabled={loading || !idHu.trim()}
-            className="w-96 items-center h-12 bg-[#0078d4] hover:bg-[#006cc1] text-white font-bold px-6 rounded-none flex justify-center gap-3 transition-all shadow-md active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-90 items-center h-12 bg-[#0078d4] hover:bg-[#006cc1] text-white font-bold px-6 rounded-none flex justify-center gap-3 transition-all shadow-md active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? (
               <>
