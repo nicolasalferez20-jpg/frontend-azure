@@ -59,7 +59,7 @@ const confirmarEliminacion = async () => {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-3">
           <div>
             <h2 className="text-xl font-bold text-slate-900">
-              Historial de Reportes
+              Historial de Historias de Usuario Azure DevOps
             </h2>
 
             <p className="text-sm text-slate-500 mt-0.5">
@@ -74,14 +74,14 @@ const confirmarEliminacion = async () => {
              onClick={() => navigate("/Consulta-Sprint")}
              className="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 bg-white text-slate-700 rounded-lg text-sm font-semibold hover:bg-slate-50 transition-colors shadow-xs cursor-pointer">
               <FileSpreadsheet size={16} className="text-slate-500" />
-              Exportar Lista
+              Exportar Sprint
             </button>
             <button
               onClick={() => navigate("/generar")}
               className="inline-flex items-center gap-2 px-4 py-2 bg-[#0078d4] text-white rounded-lg text-sm font-semibold hover:bg-[#0056b3] transition-colors shadow-xs cursor-pointer"
             >
               <Plus size={16} />
-              Nuevo Reporte
+              Nuevo Documento
             </button>
           </div>
         </div>
